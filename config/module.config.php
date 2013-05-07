@@ -80,6 +80,10 @@ return array(
                 'label' => 'Users',
                 'route' => 'zfcadmin/zfcuseradmin/list',
                 'pages' => array(
+                	'list' => array(
+                		'label' => 'Users',
+                		'route' => 'zfcadmin/zfcuseradmin/list',
+                	),
                     'create' => array(
                         'label' => 'New User',
                         'route' => 'zfcadmin/zfcuseradmin/create',
