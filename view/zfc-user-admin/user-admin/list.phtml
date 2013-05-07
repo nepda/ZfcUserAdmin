@@ -28,12 +28,12 @@ if (isset($fm[0]))
         }
         $editLink = $this->url('zfcadmin/zfcuseradmin/edit', array('userId' => $user->getId()));
         $deleteLink = $this->url('zfcadmin/zfcuseradmin/remove', array('userId' => $user->getId()));
-        echo "<td><a href='" . $editLink . "'>Edit</a> | <a href='" . $deleteLink . "'>Delete</a></td></tr>";
+        echo "<td><a href='" . $editLink . "'>" . $this->translate('Edit') . "</a> | <a href='" . $deleteLink . "'>" . $this->translate('Delete') . "</a></td></tr>";
     }
     ?>
 </table>
 <?php echo $this->paginationControl($this->users, 'Sliding', 'zfc-user-admin/user-admin/pagination_userlist.phtml'); ?>
 
 <p>
-    <a class="" href="<?php echo $this->url('zfcadmin/zfcuseradmin/create');?>">Add new user</a>
+    <a class="" href="<?php echo $this->url('zfcadmin/zfcuseradmin/create');?>"><?php echo $this->translate('Add new user')?></a>
 </p>
