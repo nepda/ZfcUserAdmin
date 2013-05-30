@@ -32,7 +32,7 @@ if (isset($fm[0]))
     }
     ?>
 </table>
-<?php echo $this->paginationControl($this->users, 'Sliding', 'zfc-user-admin/user-admin/pagination_userlist.phtml'); ?>
+<?php echo $this->paginationControl($this->users, 'Sliding', 'zfc-user-admin/user-admin/pagination_userlist'); ?>
 
 <p>
     <a class="" href="<?php echo $this->url('zfcadmin/zfcuseradmin/create');?>"><?php echo $this->translate('Add new user')?></a>
