@@ -43,18 +43,6 @@ class User extends EventProvider implements ServiceManagerAwareInterface
 
         $user = $form->getData();
 
-        if($this->getOptions()->getCreateUserAutoPassword())
-        {
-            $rand = \Zend\Math\Rand::getString(8);
-            $user->setPassword($rand);
-        } else
-
-        //@TODO: Use ZfcMail(when ready)
-        mail($user->getEmail(), 'Password', 'Your password is: ' . $user->getPassword());
-        $bcrypt = new Bcrypt;
-        $bcrypt->setCost($zfcUserOptions->getPasswordCost());
-        $user->setPassword($bcrypt->create($user->getPassword()));
-
         if ($zfcUserOptions->getEnableUsername()) {
             $user->setUsername($data['username']);
         }
@@ -67,6 +55,19 @@ class User extends EventProvider implements ServiceManagerAwareInterface
             $func = 'set' . ucfirst($element);
             $user->$func($data[$element]);
         }
+
+        if($this->getOptions()->getCreateUserAutoPassword())
+        {
+            $rand = \Zend\Math\Rand::getString(8);
+            $user->setPassword($rand);
+        }
+
+        //@TODO: Use ZfcMail(when ready)
+        //mail($user->getEmail(), 'Password', 'Your password is: ' . $user->getPassword());
+        $bcrypt = new Bcrypt;
+        $bcrypt->setCost($zfcUserOptions->getPasswordCost());
+        $user->setPassword($bcrypt->create($user->getPassword()));
+
 
         $this->getEventManager()->trigger(__FUNCTION__, $this, array('user' => $user, 'form' => $form, 'data' => $data));
         $this->getUserMapper()->insert($user);
